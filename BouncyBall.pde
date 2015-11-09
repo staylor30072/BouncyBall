@@ -8,11 +8,12 @@ float Xspeed;
 float Yspeed;
 float x;
 float y;
-
+float gravity= 5;
 //Sets size of program
-size(600,600);
+
 void setup(){
     background(250);
+    size(600,600);
 
 //Set initial value of variables
 
@@ -43,16 +44,16 @@ void draw(){
     y=y+Yspeed;
     //Prevents circle from running off screen
     if(x>=width){
-        Xspeed=-Xspeed;
+        Xspeed=-abs(Xspeed);
     }
     if(x<=0){
-        Xspeed=-Xspeed;
+      Xspeed*=-1;
     }
     if(y>=height){
-        Yspeed=-Yspeed;
+        Yspeed=-abs(Yspeed);
     }
     if(y<=0){
-        Yspeed=-Yspeed;
+      Yspeed*=-1;
     }
     //Makes circle change colors once in touch with rectangle
     if(x>=tx&&x<=tx+200&&y>=ty&&y<=ty+200){
@@ -64,5 +65,8 @@ void draw(){
         a=255;
         b=102;
         c=255;
+    }
+    if(y<height+50){
+     Yspeed+=gravity;
     }
 }
